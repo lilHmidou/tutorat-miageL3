@@ -237,8 +237,53 @@ public class Tableaux {
     }
 
     public static void moyennesParGroupe(double[] notes, int[] nbEtu) {
+        int somme = 0;
+        for (int etu : nbEtu) {
+            somme += etu;
+        }
+        if (somme == notes.length) {
+            
+            int index = 0;
+            double somme2 = 0; // somme qui parcourt notes
+            double moyenne = 0;
+            int somme3 = nbEtu[index] - 1; //somme qui parcourt nbEtu 
+            double[] moyennes = new double[nbEtu.length]; 
+            
+            for (int i = 0; i < notes.length; i++) {
+                somme2 += notes[i];
 
+                if (i == somme3) {
+                    moyenne = somme2 / nbEtu[index];
+                    moyennes[index++] = moyenne;
+                    somme2 = 0;
+                    if (index == 3) {
+                        break;
+                    }
+                    somme3 += nbEtu[index];
+                }
+            }
+            System.out.println(java.util.Arrays.toString(moyennes));
+        }
     }
+
+    public static void moyennesParGroupe2(double[] notes, int[] groupes, int nbGroupe){
+        double[] moyennes = new double [nbGroupe];
+        for(int j = 0;j<nbGroupe;j++){
+            double somme = 0;
+            int occurrence = 0;
+            for(int i=0;i<notes.length;i++){
+                if(groupes[i]==j){
+                    somme+=notes[i];
+                    occurrence++;
+                }
+            }
+            double moyenne = somme / occurrence;
+            moyennes[j]=moyenne;
+        }
+        System.out.println(java.util.Arrays.toString(moyennes));
+    }
+    
+
 
     public static void main(String[] args) {
 
@@ -248,8 +293,11 @@ public class Tableaux {
 
         int[] tab3 = { 1, 2, 3, 4, 5 };
 
-        double[] notes = { 11.0, 9.0, 10.0, 15.0, 16.0, 2.0, 3.0, 4.0 };
+        double[] notes = { 11, 9, 10, 15, 16, 2, 3, 4 };
         int[] nbEtu = { 3, 2, 3 };
+
+        double[] notes2 = {11.0, 15.0, 9.0, 3.0, 10.0, 16.0, 2.0, 4.0};
+        int [] groupes =  {   0,    1,   0,   2,    0,    1,   2,   2};
 
         // System.out.println(Tableaux.occurrenceN(tab, 2, 1));
         // System.out.println(Tableaux.palyndrome(tab));
@@ -259,15 +307,17 @@ public class Tableaux {
 
         // Tableaux.inverse(tab3);
 
-        //Tableaux.inserVal(tab3, 8, 3);
+        // Tableaux.inserVal(tab3, 8, 3);
 
-        //Tableaux.fibonnacci(1);
+        // Tableaux.fibonnacci(1);
 
-        //Tableaux.eratosthene(10);
+        // Tableaux.eratosthene(10);
 
-        //Tableaux.tableauInverse(tab3);
+        // Tableaux.tableauInverse(tab3);
 
         //Tableaux.moyennesParGroupe(notes, nbEtu);
+
+        Tableaux.moyennesParGroupe2(notes2, groupes, 3);
 
     }
 }
