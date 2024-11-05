@@ -9,7 +9,6 @@ public class EXO_moyennesParGroupe {
             
             int index = 0;
             double somme2 = 0; // somme qui parcourt notes
-            double moyenne = 0;
             int somme3 = nbEtu[index] - 1; //somme qui parcourt nbEtu 
             double[] moyennes = new double[nbEtu.length]; 
             
@@ -17,8 +16,7 @@ public class EXO_moyennesParGroupe {
                 somme2 += notes[i];
 
                 if (i == somme3) {
-                    moyenne = somme2 / nbEtu[index];
-                    moyennes[index++] = moyenne;
+                    moyennes[index] = somme2 / nbEtu[index++];
                     somme2 = 0;
                     if (index == 3) {
                         break;
